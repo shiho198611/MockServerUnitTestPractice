@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: org.mock-server:mockserver-junit-rule:5.11.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mock-server/mockserver-junit-rule/5.11.1/bf05b391cbcf009b3c6ef4db0d3f223ef4e07fbe/mockserver-junit-rule-5.11.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mock-server/mockserver-junit-rule/5.11.1/94f15854e6ecc53032171c4898e976e5c519bc80/mockserver-junit-rule-5.11.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mock-server/mockserver-junit-rule/5.11.1/4d0c8eb8149c877a4793df5c3f06e3eb13092e9a/mockserver-junit-rule-5.11.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

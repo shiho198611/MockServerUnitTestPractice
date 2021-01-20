@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.velocity:velocity-engine-core:2.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.velocity/velocity-engine-core/2.2/68d899cb70cd27d495562fa808feb2da4926d38f/velocity-engine-core-2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.velocity/velocity-engine-core/2.2/c5865a028470d9da8c3f580cfc4e556aef268ba0/velocity-engine-core-2.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.velocity/velocity-engine-core/2.2/fc07f1a396db418034c5a4a8115fbb8df785a64/velocity-engine-core-2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

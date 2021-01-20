@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: io.swagger:swagger-parser:1.0.51">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.swagger/swagger-parser/1.0.51/19f0b0e7c0f253f694ddfc017d50db29757c11eb/swagger-parser-1.0.51.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.swagger/swagger-parser/1.0.51/5c3cd7153cf11d3494afb865a3740cb12434b703/swagger-parser-1.0.51-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.swagger/swagger-parser/1.0.51/e92c2321dd784ab7c8839f8c331cb97fa87d559c/swagger-parser-1.0.51-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
