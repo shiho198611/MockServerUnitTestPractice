@@ -3,6 +3,7 @@ package com.practice.mockhttputpractice.repository
 import com.practice.mockhttputpractice.model.Device
 import com.practice.mockhttputpractice.network.DeviceServiceHelper
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.internal.operators.observable.ObservableEmpty
 
 class DeviceListRepository : BaseRepository {
 
@@ -24,6 +25,22 @@ class DeviceListRepository : BaseRepository {
                     } ?: emptyList()
                 }
                 detailsObservable
+            }
+    }
+
+    fun getAllDeviceDetailsParallel(userId: String): Observable<Device> {
+        return DeviceServiceHelper.getApiService()
+            .getDeviceList(userId)
+            .flatMap { details ->
+
+                val detailObArray =
+                    Array<Observable<Device>>(details.devices.size) { ObservableEmpty.empty() }
+                details.devices.forEachIndexed { index, serial ->
+                    detailObArray[index] =
+                        DeviceServiceHelper.getApiService().getDeviceDetail(serial)
+                }
+
+                Observable.concatArray(*detailObArray)
             }
     }
 

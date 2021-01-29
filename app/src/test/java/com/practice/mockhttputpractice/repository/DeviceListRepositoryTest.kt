@@ -1,14 +1,15 @@
 package com.practice.mockhttputpractice.repository
 
 import com.practice.mockhttputpractice.base.BaseMockApiTest
-import com.practice.mockhttputpractice.model.Device
-import com.squareup.moshi.Moshi
+import com.practice.mockhttputpractice.util.FakeDataGenerateUtil
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Test
+import java.util.concurrent.TimeUnit
 
 class DeviceListRepositoryTest : BaseMockApiTest() {
 
     private val repo = DeviceListRepository()
+    private val fakeDataGenerateUtil = FakeDataGenerateUtil()
 
     @Test
     fun getAllDeviceDetailsSuccessTest() {
@@ -21,7 +22,7 @@ class DeviceListRepositoryTest : BaseMockApiTest() {
         mockWebServer.enqueue(
             MockResponse().setResponseCode(200)
                 .setBody(
-                    generateFakeDeviceDetail(
+                    fakeDataGenerateUtil.generateMockDeviceDetail(
                         "0000-0001",
                         "test_name01",
                         "test_owner01"
@@ -32,7 +33,7 @@ class DeviceListRepositoryTest : BaseMockApiTest() {
         mockWebServer.enqueue(
             MockResponse().setResponseCode(200)
                 .setBody(
-                    generateFakeDeviceDetail(
+                    fakeDataGenerateUtil.generateMockDeviceDetail(
                         "0000-0002",
                         "test_name02",
                         "test_owner02"
@@ -43,7 +44,7 @@ class DeviceListRepositoryTest : BaseMockApiTest() {
         mockWebServer.enqueue(
             MockResponse().setResponseCode(200)
                 .setBody(
-                    generateFakeDeviceDetail(
+                    fakeDataGenerateUtil.generateMockDeviceDetail(
                         "0000-0003",
                         "test_name03",
                         "test_owner03"
@@ -66,19 +67,59 @@ class DeviceListRepositoryTest : BaseMockApiTest() {
 
     }
 
-    private fun generateFakeDeviceDetail(
-        serialNumber: String,
-        deviceName: String,
-        deviceOwner: String
-    ): String {
+    @Test
+    fun getAllDeviceDetailsSuccessWithDelayTest() {
+        mockWebServer.enqueue(
+            MockResponse().setResponseCode(200)
+                .setBody("{\"devices\": [\"0000-0001\", \"0000-0002\", \"0000-0003\"]}")
+        )
 
-        val adapter = Moshi.Builder()
-            .build()
-            .adapter(Device::class.java)
+        mockWebServer.enqueue(
+            MockResponse().setResponseCode(200)
+                .setBodyDelay(100, TimeUnit.MILLISECONDS)
+                .setBody(
+                    fakeDataGenerateUtil.generateMockDeviceDetail(
+                        "0000-0001",
+                        "test_name01",
+                        "test_owner01"
+                    )
+                )
+        )
 
-        val device = Device(serialNumber, deviceName, deviceOwner)
+        mockWebServer.enqueue(
+            MockResponse().setResponseCode(200)
+                .setBody(
+                    fakeDataGenerateUtil.generateMockDeviceDetail(
+                        "0000-0002",
+                        "test_name02",
+                        "test_owner02"
+                    )
+                )
+        )
 
-        return adapter.toJson(device)
+        mockWebServer.enqueue(
+            MockResponse().setResponseCode(200)
+                .setBody(
+                    fakeDataGenerateUtil.generateMockDeviceDetail(
+                        "0000-0003",
+                        "test_name03",
+                        "test_owner03"
+                    )
+                )
+        )
+
+        val testObserver = repo.getAllDeviceDetails("test_user")
+            .test()
+
+        testObserver.awaitCount(1)
+
+        testObserver.assertValue {
+            it.size == 3 &&
+                    it[0].deviceName == "test_name01" &&
+                    it[1].deviceName == "test_name02" &&
+                    it[2].deviceName == "test_name03"
+        }
     }
+
 
 }

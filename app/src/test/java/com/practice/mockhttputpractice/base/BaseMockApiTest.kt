@@ -15,13 +15,13 @@ abstract class BaseMockApiTest {
     lateinit var deviceService: DeviceService
 
     @Before
-    fun initTest() {
+    open fun initTest() {
         DeviceServiceHelper.initService("http://" + mockWebServer.hostName + ":" + mockWebServer.port + "/")
         deviceService = DeviceServiceHelper.getApiService()
     }
 
     @After
-    fun endTest() {
+    open fun endTest() {
         mockWebServer.shutdown()
     }
 }
